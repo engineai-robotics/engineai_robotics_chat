@@ -1,9 +1,4 @@
-"""豆包 / Seeduplex WebSocket 客户端。
-
-从 engineai_deployment ``agent_manager.duplex.realtime.RealtimeClient`` 抽出。
-机器人路由工具（delegate_to_agent）不在这里注册，``cfg.tools`` 默认为空，
-模型直接用语音回答。
-"""
+"""豆包 / Seeduplex WebSocket 客户端。"""
 
 from __future__ import annotations
 

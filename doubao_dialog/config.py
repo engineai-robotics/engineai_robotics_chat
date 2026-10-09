@@ -1,7 +1,6 @@
 """豆包端到端实时语音（Seeduplex）连接配置。
 
-端点、模型、采样率与音色来自 engineai_deployment
-``agent_manager.duplex.config``。密钥只从环境变量或项目根目录 ``.env`` 读取。
+密钥只从环境变量或项目根目录 ``.env`` 读取。
 """
 
 from __future__ import annotations
@@ -15,7 +14,7 @@ from doubao_dialog.prompt import CHAT_INSTRUCTIONS
 
 ENDPOINT_URL = "wss://openspeech.bytedance.com/api/v3/duplex/realtime/dialogue"
 MODEL = "1.2.6.1"
-SPEAKER = "S_9iYCWAZb2"
+SPEAKER = "zh_male_m191_uranus_bigtts"
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 

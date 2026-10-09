@@ -1,13 +1,14 @@
 """麦克风收音，和豆包端到端实时语音对话。
 
 默认半双工：助手播报时暂停上行麦克风，避免喇叭回声被当成下一句。
-设备自带回声消除时加 ``--duplex``，播报期间也继续送麦克风。
+若是有回声消除时，可以加 ``--duplex``参数变成全双工对话。
 
-用法（在本目录）::
+用法：
 
     python mic_chat.py --list-devices
     python mic_chat.py
     python mic_chat.py --input-device 0 --output-device 6
+    python mic_chat.py --duplex
 """
 
 from __future__ import annotations
@@ -46,7 +47,7 @@ from doubao_dialog.realtime import RealtimeClient
 
 FRAME_MS = 20
 # AIUI-USB-MC 硬件锁 8 声道 / 16 kHz。0、1 路几乎是静音，
-# 2–5 是麦克风，6–7 是回采参考。与 voice_manager 录音配置一致。
+# 2–5 是麦克风，6–7 是扬声器回采参考。
 AIUI_MIC_CHANNELS = (2, 3, 4, 5)
 
 

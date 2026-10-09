@@ -1,6 +1,4 @@
 """Seeduplex / 豆包端到端实时语音 JSON 事件名。
-
-与 engineai_deployment ``agent_manager.duplex.event_types`` 对齐。
 """
 
 TYPE_SESSION_CREATE = "session.create"
