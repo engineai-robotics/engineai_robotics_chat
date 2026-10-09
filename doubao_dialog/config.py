@@ -1,0 +1,85 @@
+"""豆包端到端实时语音（Seeduplex）连接配置。
+
+端点、模型、采样率与音色来自 engineai_deployment
+``agent_manager.duplex.config``。密钥只从环境变量或项目根目录 ``.env`` 读取。
+"""
+
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Dict, List
+
+from doubao_dialog.prompt import CHAT_INSTRUCTIONS
+
+ENDPOINT_URL = "wss://openspeech.bytedance.com/api/v3/duplex/realtime/dialogue"
+MODEL = "1.2.6.1"
+SPEAKER = "S_9iYCWAZb2"
+
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def load_dotenv(path: Path | None = None) -> None:
+    """Fill missing process env vars from a ``.env`` file. Existing vars win."""
+
+    env_path = path or (_PROJECT_ROOT / ".env")
+    if not env_path.is_file():
+        return
+    for raw in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+@dataclass
+class DialogConfig:
+    """Fields consumed by ``RealtimeClient`` (``cfg.<name>``)."""
+
+    api_key: str
+    endpoint_url: str = ENDPOINT_URL
+    model: str = MODEL
+    speaker: str = SPEAKER
+    hotwords: List[str] = field(default_factory=list)
+    asr_format: str = "pcm"
+    tts_format: str = "pcm_s16le"
+    capture_sample_rate: int = 16000
+    capture_channels: int = 1
+    tts_sample_rate: int = 24000
+    tts_channels: int = 1
+    instructions: str = CHAT_INSTRUCTIONS
+    tools: List[Dict[str, Any]] = field(default_factory=list)
+    location: Dict[str, Any] = field(
+        default_factory=lambda: {
+            "longitude": 114.305556,
+            "latitude": 22.62,
+            "city": "深圳",
+            "country": "中国",
+            "province": "广东省",
+            "district": "南山区",
+            "town": "深圳",
+            "country_code": "CN",
+            "address": "中国深圳市南山区",
+        }
+    )
+
+
+def load_config() -> DialogConfig:
+    load_dotenv()
+    api_key = (
+        os.environ.get("SEEDUPLEX_API_KEY", "").strip()
+        or os.environ.get("DOUBAO_API_KEY", "").strip()
+    )
+    if not api_key:
+        raise RuntimeError(
+            "缺少豆包 API Key。请在项目根目录 .env 中设置 SEEDUPLEX_API_KEY，"
+            "或导出环境变量 SEEDUPLEX_API_KEY / DOUBAO_API_KEY。"
+        )
+    speaker = os.environ.get("SEEDUPLEX_SPEAKER", "").strip() or SPEAKER
+    model = os.environ.get("SEEDUPLEX_MODEL", "").strip() or MODEL
+    return DialogConfig(api_key=api_key, speaker=speaker, model=model)
