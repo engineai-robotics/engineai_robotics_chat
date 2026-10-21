@@ -1,4 +1,4 @@
-"""Seeduplex / 豆包端到端实时语音 JSON 事件名。
+"""火山引擎端到端对话 JSON 事件名。
 """
 
 TYPE_SESSION_CREATE = "session.create"

@@ -1,9 +1,4 @@
-"""Standalone chat instructions.
-
-The robot deployment prompt delegates navigation and knowledge lookup to a
-backend agent. This package is microphone chat only, so the model answers
-directly.
-"""
+"""Default spoken-dialogue instructions for microphone chat."""
 
 CHAT_INSTRUCTIONS = """
 You are a spoken conversational assistant. The user talks to you through a microphone.

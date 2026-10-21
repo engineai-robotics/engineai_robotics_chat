@@ -1,6 +1,6 @@
-"""豆包端到端实时语音（Seeduplex）连接配置。
+"""火山引擎端到端对话连接配置。
 
-密钥只从环境变量或项目根目录 ``.env`` 读取。
+密钥只从环境变量或仓库根目录 ``.env`` 读取。
 """
 
 from __future__ import annotations
@@ -8,21 +8,34 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
-from doubao_dialog.prompt import CHAT_INSTRUCTIONS
+from engineai_speech.providers.volcengine.prompt import CHAT_INSTRUCTIONS
 
 ENDPOINT_URL = "wss://openspeech.bytedance.com/api/v3/duplex/realtime/dialogue"
 MODEL = "1.2.6.1"
 SPEAKER = "zh_male_m191_uranus_bigtts"
 
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+def project_root() -> Path:
+    """含 ``pyproject.toml`` 的仓库根。先看当前目录，再看本文件所在的源码树。"""
+
+    starts = [Path.cwd(), Path(__file__).resolve()]
+    seen: set[Path] = set()
+    for start in starts:
+        for parent in [start, *start.parents]:
+            if parent in seen:
+                continue
+            seen.add(parent)
+            if (parent / "pyproject.toml").is_file():
+                return parent
+    return Path.cwd()
 
 
 def load_dotenv(path: Path | None = None) -> None:
     """Fill missing process env vars from a ``.env`` file. Existing vars win."""
 
-    env_path = path or (_PROJECT_ROOT / ".env")
+    env_path = path or (project_root() / ".env")
     if not env_path.is_file():
         return
     for raw in env_path.read_text(encoding="utf-8").splitlines():
@@ -44,7 +57,7 @@ class DialogConfig:
     endpoint_url: str = ENDPOINT_URL
     model: str = MODEL
     speaker: str = SPEAKER
-    hotwords: List[str] = field(default_factory=list)
+    hotwords: list[str] = field(default_factory=list)
     asr_format: str = "pcm"
     tts_format: str = "pcm_s16le"
     capture_sample_rate: int = 16000
@@ -52,8 +65,8 @@ class DialogConfig:
     tts_sample_rate: int = 24000
     tts_channels: int = 1
     instructions: str = CHAT_INSTRUCTIONS
-    tools: List[Dict[str, Any]] = field(default_factory=list)
-    location: Dict[str, Any] = field(
+    tools: list[dict[str, Any]] = field(default_factory=list)
+    location: dict[str, Any] = field(
         default_factory=lambda: {
             "longitude": 114.305556,
             "latitude": 22.62,
@@ -70,14 +83,11 @@ class DialogConfig:
 
 def load_config() -> DialogConfig:
     load_dotenv()
-    api_key = (
-        os.environ.get("SEEDUPLEX_API_KEY", "").strip()
-        or os.environ.get("DOUBAO_API_KEY", "").strip()
-    )
+    api_key = os.environ.get("SEEDUPLEX_API_KEY", "").strip()
     if not api_key:
         raise RuntimeError(
-            "缺少豆包 API Key。请在项目根目录 .env 中设置 SEEDUPLEX_API_KEY，"
-            "或导出环境变量 SEEDUPLEX_API_KEY / DOUBAO_API_KEY。"
+            "缺少火山引擎端到端对话的 API Key。请在项目根目录 .env 中设置 SEEDUPLEX_API_KEY，"
+            "或导出同名环境变量。"
         )
     speaker = os.environ.get("SEEDUPLEX_SPEAKER", "").strip() or SPEAKER
     model = os.environ.get("SEEDUPLEX_MODEL", "").strip() or MODEL

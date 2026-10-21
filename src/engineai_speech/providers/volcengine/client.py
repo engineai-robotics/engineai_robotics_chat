@@ -1,4 +1,4 @@
-"""豆包 / Seeduplex WebSocket 客户端。"""
+"""火山引擎端到端对话 WebSocket 客户端。"""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Tuple
 
 import websockets
 
-from doubao_dialog.event_types import (
+from engineai_speech.providers.volcengine.events import (
     TYPE_CONVERSATION_ITEM_CREATE,
     TYPE_ERROR,
     TYPE_INPUT_AUDIO_BUFFER_APPEND,
@@ -37,7 +37,7 @@ _CONNECT_HEADER_KWARG = (
 
 
 class RealtimeClient:
-    """Seeduplex connection and JSON-event protocol client."""
+    """Volcengine end-to-end dialogue connection and JSON-event protocol client."""
 
     def __init__(self, cfg: Any):
         self.cfg = cfg
