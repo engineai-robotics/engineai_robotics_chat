@@ -22,18 +22,18 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from engineai_speech.audio.playback import PcmPlayer
-from engineai_speech.dialog.microphone import (
+from engineai_robotics_chat.audio.playback import PcmPlayer
+from engineai_robotics_chat.dialog.microphone import (
     build_parser,
     list_devices,
     run_microphone_dialog,
     run_until_interrupted,
 )
-from engineai_speech.dialog.session import DialogSession
-from engineai_speech.dialog.tools import SpeechTool, query_from_arguments, tool_schemas
-from engineai_speech.knowledge.bm25 import Bm25Retriever
-from engineai_speech.providers.volcengine.adapter import VolcengineProvider
-from engineai_speech.providers.volcengine.config import load_config
+from engineai_robotics_chat.dialog.session import DialogSession
+from engineai_robotics_chat.dialog.tools import SpeechTool, query_from_arguments, tool_schemas
+from engineai_robotics_chat.knowledge.bm25 import Bm25Retriever
+from engineai_robotics_chat.providers.volcengine.adapter import VolcengineProvider
+from engineai_robotics_chat.providers.volcengine.config import load_config
 
 DEFAULT_KNOWLEDGE = ROOT / "data" / "knowledge_text.txt"
 

@@ -1,4 +1,4 @@
-# EngineAI Speech
+# EngineAI Robotics Chat
 
 [中文](README_CN.md) | English
 
@@ -21,7 +21,7 @@ Main capabilities:
 ## Repository Structure
 
 ```text
-src/engineai_speech/
+src/engineai_robotics_chat/
 ├── audio/                 # Sound devices, multi-channel frames, and playback
 ├── dialog/                # Session control and tool calls
 ├── providers/             # Third-party API integration

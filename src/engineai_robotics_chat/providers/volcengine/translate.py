@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import base64
 
-from engineai_speech.dialog.events import SpeechEvent, ToolCall
-from engineai_speech.providers.volcengine.events import (
+from engineai_robotics_chat.dialog.events import SpeechEvent, ToolCall
+from engineai_robotics_chat.providers.volcengine.events import (
     TYPE_ERROR,
     TYPE_RESPONSE_CANCELED,
     TYPE_RESPONSE_DONE,

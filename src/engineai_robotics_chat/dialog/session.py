@@ -5,8 +5,8 @@ from __future__ import annotations
 import asyncio
 import sys
 
-from engineai_speech.dialog.events import SpeechEvent
-from engineai_speech.dialog.tools import SpeechTool
+from engineai_robotics_chat.dialog.events import SpeechEvent
+from engineai_robotics_chat.dialog.tools import SpeechTool
 
 
 class DialogSession:

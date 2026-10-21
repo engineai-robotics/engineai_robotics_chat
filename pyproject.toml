@@ -3,9 +3,9 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "engineai-speech"
+name = "engineai-robotics-chat"
 version = "0.1.0"
-description = "EngineAI speech library for microphone dialog, audio front-end, and provider adapters."
+description = "EngineAI robotics chat library for microphone dialogue, audio capture, and speech providers."
 readme = "README.md"
 license = { file = "LICENSE.txt" }
 requires-python = ">=3.10"
@@ -22,4 +22,4 @@ rag = ["jieba>=0.42", "rank-bm25>=0.2"]
 where = ["src"]
 
 [tool.setuptools.package-data]
-engineai_speech = ["knowledge/stopwords.txt"]
+engineai_robotics_chat = ["knowledge/stopwords.txt"]

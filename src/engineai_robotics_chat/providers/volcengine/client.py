@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Tuple
 
 import websockets
 
-from engineai_speech.providers.volcengine.events import (
+from engineai_robotics_chat.providers.volcengine.events import (
     TYPE_CONVERSATION_ITEM_CREATE,
     TYPE_ERROR,
     TYPE_INPUT_AUDIO_BUFFER_APPEND,

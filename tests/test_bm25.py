@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from engineai_speech.knowledge.bm25 import Bm25Retriever, chunk_text, normalize_query_numbers
+from engineai_robotics_chat.knowledge.bm25 import Bm25Retriever, chunk_text, normalize_query_numbers
 
 
 class Bm25Tests(unittest.TestCase):

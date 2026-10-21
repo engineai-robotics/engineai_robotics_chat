@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from engineai_speech.audio.frame import AudioEvent, AudioFrame, mix_to_mono
+from engineai_robotics_chat.audio.frame import AudioEvent, AudioFrame, mix_to_mono
 
 
 class AudioPipeline:

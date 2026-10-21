@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from engineai_speech.dialog.events import SpeechEvent
-from engineai_speech.providers.volcengine.client import RealtimeClient
-from engineai_speech.providers.volcengine.config import DialogConfig
-from engineai_speech.providers.volcengine.translate import translate_event
+from engineai_robotics_chat.dialog.events import SpeechEvent
+from engineai_robotics_chat.providers.volcengine.client import RealtimeClient
+from engineai_robotics_chat.providers.volcengine.config import DialogConfig
+from engineai_robotics_chat.providers.volcengine.translate import translate_event
 
 
 class VolcengineProvider:

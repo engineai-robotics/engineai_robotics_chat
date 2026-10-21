@@ -5,15 +5,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from engineai_speech.dialog.events import SpeechEvent, ToolCall
-from engineai_speech.dialog.session import DialogSession
-from engineai_speech.dialog.tools import SpeechTool, query_from_arguments
-from engineai_speech.providers.volcengine.events import (
+from engineai_robotics_chat.dialog.events import SpeechEvent, ToolCall
+from engineai_robotics_chat.dialog.session import DialogSession
+from engineai_robotics_chat.dialog.tools import SpeechTool, query_from_arguments
+from engineai_robotics_chat.providers.volcengine.events import (
     TYPE_RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE,
     TYPE_RESPONSE_OUTPUT_AUDIO_DELTA,
     TYPE_TRANSCRIPTION_COMPLETED,
 )
-from engineai_speech.providers.volcengine.translate import translate_event
+from engineai_robotics_chat.providers.volcengine.translate import translate_event
 
 
 class FakeProvider:

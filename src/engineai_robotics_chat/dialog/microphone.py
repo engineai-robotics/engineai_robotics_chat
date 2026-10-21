@@ -6,15 +6,15 @@ import argparse
 import asyncio
 import sys
 
-from engineai_speech.audio.capture import open_mic
-from engineai_speech.audio.devices import (
+from engineai_robotics_chat.audio.capture import open_mic
+from engineai_robotics_chat.audio.devices import (
     capture_layout,
     list_devices,
     output_device_name,
     pick_input_device,
 )
-from engineai_speech.audio.pipeline import AudioPipeline
-from engineai_speech.dialog.session import DialogSession
+from engineai_robotics_chat.audio.pipeline import AudioPipeline
+from engineai_robotics_chat.dialog.session import DialogSession
 
 
 def build_parser(description: str) -> argparse.ArgumentParser:

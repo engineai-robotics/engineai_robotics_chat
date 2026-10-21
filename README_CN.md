@@ -1,4 +1,4 @@
-# EngineAI Speech
+# EngineAI Robotics Chat
 
 中文 | [English](README.md)
 
@@ -21,7 +21,7 @@
 ## 仓库结构
 
 ```text
-src/engineai_speech/
+src/engineai_robotics_chat/
 ├── audio/                 # 声卡、多声道帧与播放
 ├── dialog/                # 会话控制与工具调用
 ├── providers/             # 第三方 API 调用

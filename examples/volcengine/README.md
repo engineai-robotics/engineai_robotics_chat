@@ -98,7 +98,7 @@ python examples/volcengine/mic_chat_rag.py --knowledge data/knowledge_text.txt
 
 这个脚本的麦克风参数和 `examples/volcengine/mic_chat.py` 相同，也可以加 `--greet`、`--duplex` 和设备编号。
 
-检索方式是本地 BM25：把文本按大约 512 字切成段，用 jieba 分词后做关键词匹配，取得分最高的几段原文。`src/engineai_speech/knowledge/stopwords.txt` 里的词会在打分前去掉，避免「一个」「一些」这类常见词把不相关的段落排到前面。这里没有向量模型，也没有调用云端知识库。
+检索方式是本地 BM25：把文本按大约 512 字切成段，用 jieba 分词后做关键词匹配，取得分最高的几段原文。`src/engineai_robotics_chat/knowledge/stopwords.txt` 里的词会在打分前去掉，避免「一个」「一些」这类常见词把不相关的段落排到前面。这里没有向量模型，也没有调用云端知识库。
 
 ## 7. 提示词和会话设置
 
@@ -112,7 +112,7 @@ python examples/volcengine/mic_chat_rag.py --knowledge data/knowledge_text.txt
 
 这是给模型的人设和回答规则。模型每次回答都会参考它。它不出现在扬声器里，用户听不到这段文字。
 
-普通对话用 `src/engineai_speech/providers/volcengine/prompt.py` 里的 `CHAT_INSTRUCTIONS`。当前规则是：
+普通对话用 `src/engineai_robotics_chat/providers/volcengine/prompt.py` 里的 `CHAT_INSTRUCTIONS`。当前规则是：
 
 1. 用用户的语言回答。用户说中文就用中文，说英文就用英文。
 2. 口语化，通常一两句。用户明确要求详细说明时再展开。
@@ -153,13 +153,13 @@ python examples/volcengine/mic_chat_rag.py --knowledge data/knowledge_text.txt
 
 字段位置：`extension.dialog.location`。
 
-这是告诉模型「当前对话发生在哪里」，方便回答天气、附近一类和地点有关的问题。默认写在 `src/engineai_speech/providers/volcengine/config.py` 的 `DialogConfig.location`，包括经纬度、城市、省市区和地址。地点变了就改这一个字典。
+这是告诉模型「当前对话发生在哪里」，方便回答天气、附近一类和地点有关的问题。默认写在 `src/engineai_robotics_chat/providers/volcengine/config.py` 的 `DialogConfig.location`，包括经纬度、城市、省市区和地址。地点变了就改这一个字典。
 
 ### audit_response：审核兜底话术
 
 字段位置：`extension.dialog.extra.audit_response`。
 
-用户的问题命中服务端安全审核时，模型用这段固定英文回复，而不是继续回答原问题。当前文案在 `src/engineai_speech/providers/volcengine/client.py` 的 `build_session_config` 里。要改语气或改成中文，改这一个字符串。
+用户的问题命中服务端安全审核时，模型用这段固定英文回复，而不是继续回答原问题。当前文案在 `src/engineai_robotics_chat/providers/volcengine/client.py` 的 `build_session_config` 里。要改语气或改成中文，改这一个字符串。
 
 ### 其他会随会话一起发出的开关
 

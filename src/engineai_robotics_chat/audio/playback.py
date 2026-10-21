@@ -8,7 +8,7 @@ import threading
 import numpy as np
 import sounddevice as sd
 
-from engineai_speech.audio.frame import FRAME_MS
+from engineai_robotics_chat.audio.frame import FRAME_MS
 
 
 class PcmPlayer:

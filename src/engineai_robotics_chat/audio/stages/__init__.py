@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 
-from engineai_speech.audio.frame import AudioFrame
+from engineai_robotics_chat.audio.frame import AudioFrame
 
 
 class AudioStage:

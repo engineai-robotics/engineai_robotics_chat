@@ -8,7 +8,7 @@ import sys
 import numpy as np
 import sounddevice as sd
 
-from engineai_speech.audio.frame import FRAME_MS, frame_from_input, mix_to_mono
+from engineai_robotics_chat.audio.frame import FRAME_MS, frame_from_input, mix_to_mono
 
 
 def open_mic(

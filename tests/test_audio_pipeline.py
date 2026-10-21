@@ -6,10 +6,10 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from engineai_speech.audio.detectors import AudioDetector
-from engineai_speech.audio.frame import AudioEvent, AudioFrame, frame_from_input, mix_to_mono
-from engineai_speech.audio.pipeline import AudioPipeline
-from engineai_speech.audio.stages import AudioStage
+from engineai_robotics_chat.audio.detectors import AudioDetector
+from engineai_robotics_chat.audio.frame import AudioEvent, AudioFrame, frame_from_input, mix_to_mono
+from engineai_robotics_chat.audio.pipeline import AudioPipeline
+from engineai_robotics_chat.audio.stages import AudioStage
 
 
 def _frame(values, mic_channels, ref_channels=()):

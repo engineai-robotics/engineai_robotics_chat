@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from engineai_speech.providers.volcengine.prompt import CHAT_INSTRUCTIONS
+from engineai_robotics_chat.providers.volcengine.prompt import CHAT_INSTRUCTIONS
 
 ENDPOINT_URL = "wss://openspeech.bytedance.com/api/v3/duplex/realtime/dialogue"
 MODEL = "1.2.6.1"
